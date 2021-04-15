@@ -1,0 +1,42 @@
+This file contains some of methodologies and technologies I used while developing the project.
+
+ENTITIES & POJO's
+Firstly, I generated POJOs using the xsd file provided to make it easier to map the xml entities provided.
+I used IntelliJ's build in functionality to do this.
+I created the sql ("src/main/sql/schema_create.sql") using the POJO's created as a skeleton to map out how the data
+in the MySQL database would be mapped out. I then proceeded to run the queries to create the tables in my "JEE_Assess"
+database.
+I created an abstract entity to ensure all created entities have the same "id" parameter and so I can ensure strictness
+latter on in the code.
+Using the javax library, i used the provided annotations to map that the created types were database entities and
+specified their appropriate tables and columns.
+I used the lombok framework to make the class creation much easier and readable as lombok can be used to generate
+getters and setters and constructors. This is done with the use of annotations.
+
+DESIGN PATTERN(s)
+I decided to implement the Repository design pattern as i found it is a clean simple way retrieve data from a any
+sort of data source.
+With this, I made use of NamedQueries to make it easier to query the data base and easy to access the calls in the
+code.
+I created an interface for a Repository and interfaces for each respective Repo (Repository) as this will be needed
+later for Injection and so that i could test later - with a test repo not making any database calls - this also allowed
+me to type each repository with each respective entity.
+I created an abstract DatabaseRepo (AbstractEntityDatabaseRepository) to handle all the similar code/calls that would
+be made by each extending repository class ie. getAll(), getById(Integer id).
+At this point all i had to do was create Entity specific call in each Repository which are not specific throughout
+all repositories. This minimises the amount code actually needed and makes for easier readability.
+
+I used the EJB framework for injection but couldn't get the injection to work in the timeframe given unfortunately.
+
+I created REST resources for calls made to retrieve data using the javax library to make certain GET calls. I am familiar
+more with REST than i am with SOAP so i opted for REST resoureces. I also think it is easier to implement and works
+really well.
+
+I planned to implement a Value Object Pattern - where value objects are created to represent the data that is being
+sent to and from any sort of User Interface instead of the database entities - but also did not come around to implementing
+this.
+
+I also did not get a chance to implement any sort of front end but my hopes are that my design approaches and coding
+decisions will be enough to compensate.
+
+Kabelo Mokgoro
